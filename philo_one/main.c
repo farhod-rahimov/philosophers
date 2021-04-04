@@ -6,7 +6,7 @@
 /*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/04 17:32:52 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/04 18:04:17 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_error(char *str)
 int main(int argc, char **argv)
 {
 	pthread_t	*philosophers;
-	pthread_t	servant;
+	pthread_t	monitor_even;
+	pthread_t	monitor_odd;
 	int			i;
 	int			*n;
 
@@ -30,6 +31,10 @@ int main(int argc, char **argv)
 
 	/***FT_GET_DATA***/
 	ft_get_data(argv);
+
+
+	/***MUTEX_INIT***/
+	pthread_mutex_init(&print_mutex, NULL);
 
 	/***PTHREAD_CREATE***/
 	if ((philosophers = (pthread_t *)malloc(sizeof(pthread_t) * data.num_phils)) == NULL)
@@ -42,7 +47,9 @@ int main(int argc, char **argv)
 		n[i] = i;
 		i++;
 	}
-	pthread_create(&servant, NULL, ft_monitor, NULL);
+	data.start_time = ft_get_time();
+	pthread_create(&monitor_even, NULL, ft_monitor_even, NULL);
+	pthread_create(&monitor_odd, NULL, ft_monitor_odd, NULL);
 	i = 0;
 	while (i < data.num_phils)
 	{
@@ -51,7 +58,8 @@ int main(int argc, char **argv)
 	}
 
 	/***PTHREAD_JOIN***/
-	pthread_join(servant, NULL);
+	pthread_join(monitor_even, NULL);
+	pthread_join(monitor_odd, NULL);
 	i = 0;
 	while (i < data.num_phils)
 	{
@@ -59,14 +67,15 @@ int main(int argc, char **argv)
 		i++;
 	}
 
+	/***MUTEX_DESTROY***/
+	pthread_mutex_destroy(&print_mutex);
+	
 	/***FREE***/
 	free(philosophers);
 	free(n);
 	free(data.start_starving);
 	free(data.should_eat);
 }
-
-
 
 void	ft_get_data(char **argv)
 {
@@ -88,4 +97,12 @@ void	ft_get_data(char **argv)
 	if ((data.should_eat = (int *)malloc(sizeof(int) * data.num_phils)) == NULL)
 		ft_error(MALLOC_ERR);
 	ft_bzero((void *)data.should_eat, data.num_phils * sizeof(int));
+}
+
+long long int ft_get_time(void)
+{
+	tv	time;
+
+	gettimeofday(&time, NULL);
+	return ((long long int)(time.tv_sec * 1000 + time.tv_usec * 0.001));
 }

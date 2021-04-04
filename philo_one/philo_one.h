@@ -6,7 +6,7 @@
 /*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/04 17:32:26 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/04 18:04:33 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,16 @@ m_t		*fork_mutex;
 m_t		print_mutex;
 t_data	data;
 
-void	ft_get_data(char **argv);
-void	*ft_monitor(void *nil);
-void	*ft_work_in_thread(void *n);
+long long int	ft_get_time(void);
+void			ft_get_data(char **argv);
 
+void			*ft_work_in_thread(void *n);
+void    		ft_eat_phil(int n, long long int current);
+void    		ft_sleep_phil(int n, long long int current);
+void    		ft_think_phil(int n, long long int current);
+
+void			*ft_monitor_even(void *nil);
+void			*ft_monitor_odd(void *nil);
 // 4 410 200 200
 // 4 410 200 200 7
 // 4 410 200 200 10
