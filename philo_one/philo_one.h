@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_one.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/04 18:04:33 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/05 15:53:18 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_struct
 	int				num_eat;
 	
     int				*should_eat;
+	int				*is_sleeping;
+	int				*is_thinking;
 }	t_data;
 
 m_t		*fork_mutex;
@@ -54,8 +56,7 @@ void    		ft_eat_phil(int n, long long int current);
 void    		ft_sleep_phil(int n, long long int current);
 void    		ft_think_phil(int n, long long int current);
 
-void			*ft_monitor_even(void *nil);
-void			*ft_monitor_odd(void *nil);
+void			*ft_monitor(void *nil);
 // 4 410 200 200
 // 4 410 200 200 7
 // 4 410 200 200 10

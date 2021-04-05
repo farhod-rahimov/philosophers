@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/04 18:04:17 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/05 15:54:40 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_error(char *str)
 int main(int argc, char **argv)
 {
 	pthread_t	*philosophers;
-	pthread_t	monitor_even;
-	pthread_t	monitor_odd;
+	pthread_t	monitor;
+	// pthread_t	monitor_odd;
 	int			i;
 	int			*n;
 
@@ -35,6 +35,11 @@ int main(int argc, char **argv)
 
 	/***MUTEX_INIT***/
 	pthread_mutex_init(&print_mutex, NULL);
+	if ((fork_mutex = (m_t *)malloc(sizeof(m_t) * data.num_phils)) == NULL)
+		ft_error(MALLOC_ERR);
+	i = 0;
+	while (i < data.num_phils)
+		pthread_mutex_init(&fork_mutex[i++], NULL);
 
 	/***PTHREAD_CREATE***/
 	if ((philosophers = (pthread_t *)malloc(sizeof(pthread_t) * data.num_phils)) == NULL)
@@ -48,8 +53,7 @@ int main(int argc, char **argv)
 		i++;
 	}
 	data.start_time = ft_get_time();
-	pthread_create(&monitor_even, NULL, ft_monitor_even, NULL);
-	pthread_create(&monitor_odd, NULL, ft_monitor_odd, NULL);
+	pthread_create(&monitor, NULL, ft_monitor, NULL);
 	i = 0;
 	while (i < data.num_phils)
 	{
@@ -58,8 +62,7 @@ int main(int argc, char **argv)
 	}
 
 	/***PTHREAD_JOIN***/
-	pthread_join(monitor_even, NULL);
-	pthread_join(monitor_odd, NULL);
+	pthread_join(monitor, NULL);
 	i = 0;
 	while (i < data.num_phils)
 	{
@@ -69,12 +72,18 @@ int main(int argc, char **argv)
 
 	/***MUTEX_DESTROY***/
 	pthread_mutex_destroy(&print_mutex);
+	i = 0;
+	while (i < data.num_phils)
+		pthread_mutex_destroy(&fork_mutex[i]);
 	
 	/***FREE***/
 	free(philosophers);
 	free(n);
+	free(fork_mutex);
 	free(data.start_starving);
 	free(data.should_eat);
+	free(data.is_sleeping);
+	free(data.is_thinking);
 }
 
 void	ft_get_data(char **argv)
@@ -97,6 +106,15 @@ void	ft_get_data(char **argv)
 	if ((data.should_eat = (int *)malloc(sizeof(int) * data.num_phils)) == NULL)
 		ft_error(MALLOC_ERR);
 	ft_bzero((void *)data.should_eat, data.num_phils * sizeof(int));
+	
+	if ((data.is_sleeping = (int *)malloc(sizeof(int) * data.num_phils)) == NULL)
+		ft_error(MALLOC_ERR);
+	ft_bzero((void *)data.is_sleeping, data.num_phils * sizeof(int));
+	
+	if ((data.is_thinking = (int *)malloc(sizeof(int) * data.num_phils)) == NULL)
+		ft_error(MALLOC_ERR);
+	ft_bzero((void *)data.is_thinking, data.num_phils * sizeof(int));
+
 }
 
 long long int ft_get_time(void)
