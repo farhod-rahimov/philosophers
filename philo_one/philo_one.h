@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/05 18:14:29 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/05 20:17:24 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ typedef struct s_struct
 m_t		*fork_mutex;
 m_t		print_mutex;
 t_data	data;
+
+int		ft_atoi(const char *str);
+void	ft_bzero(void *s, size_t n);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putstr_fd(char *s, int fd);
+size_t	ft_strlen(const char *s);
 
 long long int	ft_get_time(void);
 void			ft_get_data(char **argv);
