@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/05 17:23:07 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/05 17:28:22 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void			*ft_work_in_thread(void *n);
 void    		ft_eat_phil(int n, long long int current);
 void    		ft_sleep_phil(int n, long long int current);
 void    		ft_think_phil(int n, long long int current);
+void			ft_print(long long int current, int n, char *str);
 
 void			*ft_monitor(void *nil);
 void    		*ft_check_death_phil(void *nill);
