@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/05 19:38:12 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/05 20:02:40 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ int main(int argc, char **argv)
 	printf("hahaha %lld\n", ft_get_time() - data.start_time);
 	
 	/***FREE***/
-	free(philosophers);
-	free(n);
-	free(fork_mutex);
-	free(data.start_starving);
-	free(data.should_eat);
-	free(data.is_sleeping);
-	free(data.is_thinking);
+	// free(philosophers);
+	// free(n);
+	// free(fork_mutex);
+	// free(data.start_starving);
+	// free(data.should_eat);
+	// free(data.is_sleeping);
+	// free(data.is_thinking);
 	return (0);
 }
 
