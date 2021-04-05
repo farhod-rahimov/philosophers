@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/05 17:28:22 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/05 18:14:29 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_struct
 	int				time_sleep;
 	int				num_eat;
 	
+	int				*num_eat_phil;
     int				*should_eat;
 	int				*is_sleeping;
 	int				*is_thinking;

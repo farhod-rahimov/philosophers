@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/05 17:18:05 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/05 19:38:12 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int main(int argc, char **argv)
 	usleep(data.time_eat / 2);
 	pthread_create(&check_death, NULL, ft_check_death_phil, NULL);
 	/***PTHREAD_JOIN***/
-	pthread_join(monitor, NULL);
-	pthread_join(check_death, NULL);
+	// pthread_join(monitor, NULL);
+	// pthread_join(check_death, NULL);
 	i = 0;
 	while (i < data.num_phils)
 	{
@@ -73,11 +73,12 @@ int main(int argc, char **argv)
 		i++;
 	}
 
-	/***MUTEX_DESTROY***/
-	pthread_mutex_destroy(&print_mutex);
-	i = 0;
-	while (i < data.num_phils)
-		pthread_mutex_destroy(&fork_mutex[i]);
+	// /***MUTEX_DESTROY***/
+	// pthread_mutex_destroy(&print_mutex);
+	// i = 0;
+	// while (i < data.num_phils)
+	// 	pthread_mutex_destroy(&fork_mutex[i]);
+	printf("hahaha %lld\n", ft_get_time() - data.start_time);
 	
 	/***FREE***/
 	free(philosophers);
@@ -87,6 +88,7 @@ int main(int argc, char **argv)
 	free(data.should_eat);
 	free(data.is_sleeping);
 	free(data.is_thinking);
+	return (0);
 }
 
 void	ft_get_data(char **argv)
@@ -117,7 +119,13 @@ void	ft_get_data(char **argv)
 	if ((data.is_thinking = (int *)malloc(sizeof(int) * data.num_phils)) == NULL)
 		ft_error(MALLOC_ERR);
 	ft_bzero((void *)data.is_thinking, data.num_phils * sizeof(int));
-
+	
+	if ((data.num_eat_phil = (int *)malloc(sizeof(int) * data.num_phils)) == NULL)
+		ft_error(MALLOC_ERR);
+	int i;
+	i = 0;
+	while (i < data.num_phils)
+		data.num_eat_phil[i++] = data.num_eat;
 }
 
 long long int ft_get_time(void)
