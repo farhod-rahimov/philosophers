@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btammara <btammara@student.42.fr>          +#+  +:+       +#+         #
+#    By: farhod <farhod@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/06 16:30:33 by btammara          #+#    #+#              #
-#    Updated: 2021/04/04 17:34:19 by btammara         ###   ########.fr        #
+#    Updated: 2021/04/05 16:01:25 by farhod           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =			./main.c \
 				./ft_monitor.c \
-				./ft_work_in_thread.c
+				./ft_work_in_thread.c \
+				./ft_check_death_phil.c
 
 OBJS =			$(SRCS:.c=.o)
 
