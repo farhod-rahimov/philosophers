@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/05 16:05:56 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/05 17:18:05 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_error(char *str)
 int main(int argc, char **argv)
 {
 	pthread_t	*philosophers;
-	pthread_t	*check_death;
+	pthread_t	check_death;
 	pthread_t	monitor;
 	// pthread_t	monitor_odd;
 	int			i;
@@ -45,8 +45,6 @@ int main(int argc, char **argv)
 	/***PTHREAD_CREATE***/
 	if ((philosophers = (pthread_t *)malloc(sizeof(pthread_t) * data.num_phils)) == NULL)
 		ft_error(MALLOC_ERR);
-	if ((check_death = (pthread_t *)malloc(sizeof(pthread_t) * data.num_phils)) == NULL)
-		ft_error(MALLOC_ERR);
 	if ((n = (int *)malloc(sizeof(int) * data.num_phils)) == NULL)
 		ft_error(MALLOC_ERR);
 	i = 0;
@@ -64,19 +62,14 @@ int main(int argc, char **argv)
 		i++;
 	}
 	usleep(data.time_eat / 2);
-	i = 0;
-	while (i < data.num_phils)
-	{
-		pthread_create(&check_death[i], NULL, ft_check_death_phil, (void *)&(n[i]));
-		i++;
-	}
+	pthread_create(&check_death, NULL, ft_check_death_phil, NULL);
 	/***PTHREAD_JOIN***/
 	pthread_join(monitor, NULL);
+	pthread_join(check_death, NULL);
 	i = 0;
 	while (i < data.num_phils)
 	{
 		pthread_join(philosophers[i], NULL);
-		pthread_join(check_death[i], NULL);
 		i++;
 	}
 

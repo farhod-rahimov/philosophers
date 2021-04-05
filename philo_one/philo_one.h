@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/05 16:00:35 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/05 17:23:07 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void    		ft_think_phil(int n, long long int current);
 
 void			*ft_monitor(void *nil);
 void    		*ft_check_death_phil(void *nill);
+void			ft_sleep(long long int milliseconds);
 // 4 410 200 200
 // 4 410 200 200 7
 // 4 410 200 200 10
