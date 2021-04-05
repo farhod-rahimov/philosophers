@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/05 20:17:24 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/05 21:01:38 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ typedef struct s_struct
 	int				*is_thinking;
 }	t_data;
 
+typedef struct s_thread
+{
+	pthread_t *philosophers;
+	pthread_t monitor;
+	pthread_t check_death;
+} t_thread;
+
 m_t		*fork_mutex;
 m_t		print_mutex;
 t_data	data;
@@ -54,6 +61,8 @@ void	ft_bzero(void *s, size_t n);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);
+
+void	ft_error(char *str);
 
 long long int	ft_get_time(void);
 void			ft_get_data(char **argv);

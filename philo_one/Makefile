@@ -6,7 +6,7 @@
 #    By: farhod <farhod@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/06 16:30:33 by btammara          #+#    #+#              #
-#    Updated: 2021/04/05 20:15:18 by farhod           ###   ########.fr        #
+#    Updated: 2021/04/05 20:43:18 by farhod           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRCS =			./main.c \
 				./ft_monitor.c \
 				./ft_print.c \
 				./ft_work_in_thread.c \
+				./ft_get_data.c \
 				./mini_libft/ft_atoi.c \
 				./mini_libft/ft_bzero.c \
 				./mini_libft/ft_putnbr_fd.c \
