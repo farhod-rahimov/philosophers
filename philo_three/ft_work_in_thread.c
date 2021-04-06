@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:30:37 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 19:36:59 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 19:40:23 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void    ft_eat_phil(int n, long long int current)
 	sem_wait(print_sem);
 	ft_print(current - data.start_time, n, " is eating\n");
 	sem_post(print_sem);
-	// ft_sleep(data.time_eat);
-	usleep(data.time_eat * 1000);
+	ft_sleep(data.time_eat);
+	// usleep(data.time_eat * 1000);
 	sem_post(fork_sem);
 	sem_post(fork_sem);
 	if (--data.num_eat_phil[n] == 0)
@@ -59,8 +59,8 @@ void    ft_sleep_phil(int n, long long int current)
 	sem_wait(print_sem);
 	ft_print(current - data.start_time, n, " is sleeping\n");
 	sem_post(print_sem);
-	usleep(data.time_sleep * 1000);
-	// ft_sleep(data.time_sleep);
+	// usleep(data.time_sleep * 1000);
+	ft_sleep(data.time_sleep);
 	data.is_sleeping[n] = 0;
 	return (ft_think_phil(n, current + data.time_sleep));
 }

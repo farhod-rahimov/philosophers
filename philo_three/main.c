@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 19:32:09 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 19:41:08 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,18 @@ void	ft_process_create(t_thread *threads)
 	ft_array_create(&n);
 	i = 0;
 	// pthread_create(&threads->monitor, NULL, ft_monitor, NULL);
+	data.start_time = ft_get_time();
 	while (i < data.num_phils)
 	{
 		if ((pid = fork()) == 0)
 		{
-			data.start_time = ft_get_time();
 			ft_work_in_thread((void *)&n[i]);
 			usleep(data.time_eat / 2);
 			pthread_create(&threads->check_death, NULL, ft_check_death_phil, (void *)&n[i]);
 			pthread_join(threads->check_death, NULL);
 			exit(0);
 		}
-		usleep(150);
+		// usleep(150);
 		i++;
 	}
 	waitpid(pid, &status, 0);
