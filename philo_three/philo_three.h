@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <semaphore.h>
+#include <signal.h>
 #include "../liba/libft.h"
 
 # define ARG_ERR "Error. The number of arguments should be 4 or 5\n"
@@ -48,7 +49,7 @@ typedef struct s_struct
 
 typedef struct s_thread
 {
-	pthread_t *philosophers;
+	pthread_t philosopher;
 	pthread_t monitor;
 	pthread_t check_death;
 } t_thread;
@@ -75,7 +76,7 @@ void    		ft_think_phil(int n, long long int current);
 void			ft_print(long long int current, int n, char *str);
 
 void			*ft_monitor(void *nil);
-void    		*ft_check_death_phil(void *nill);
+void    		*ft_check_death_phil(void *n);
 void			ft_sleep(long long int milliseconds);
 // 4 410 200 200
 // 4 410 200 200 7
