@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 20:47:21 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 21:08:26 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	ft_threads_create(t_thread *threads)
 	{
 		if ((pid = fork()) == 0)
 		{
-			pthread_create(&threads->philosopher, NULL, ft_check_death_phil, (void *)&n[i]);
+			pthread_create(&threads->check_death, NULL, ft_check_death_phil, (void *)&n[i]);
 			ft_work_phil((void *)&n[i]);
-			pthread_join(threads->philosopher, NULL);
+			pthread_join(threads->check_death, NULL);
 			exit(0);
 		}
 		i++;
