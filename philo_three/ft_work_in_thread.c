@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:30:37 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 14:29:16 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 16:51:25 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	*ft_work_in_thread(void *n)
 	{
 		if (/*data.should_eat[*(int *)n] == 1 && */!data.is_sleeping[*(int *)n] && !data.is_thinking[*(int *)n])
 		{
-			sem_wait(fork_sem);
-			sem_wait(fork_sem);
 			current = ft_get_time();
 			sem_wait(print_sem);
 			ft_print(current - data.start_time, *(int *)n, " has taken a fork\n");
 			ft_print(current - data.start_time, *(int *)n, " has taken a fork\n");
 			sem_post(print_sem);
 			
+			sem_wait(fork_sem);
+			sem_wait(fork_sem);
 			ft_eat_phil(*(int *)n, current);
 		}
 	}

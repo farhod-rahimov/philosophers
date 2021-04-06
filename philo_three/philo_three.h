@@ -54,16 +54,9 @@ typedef struct s_thread
 	pthread_t check_death;
 } t_thread;
 
-typedef	struct s_wait
-{
-	pid_t	*pids;
-} t_wait;
-
-
 sem_t	*fork_sem;
 sem_t	*print_sem;
 t_data	data;
-t_wait	wait_data;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
