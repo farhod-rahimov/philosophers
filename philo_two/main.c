@@ -6,12 +6,12 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 11:33:39 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 13:20:01 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
-void	ft_mutex_init(void);
+void	ft_semaphore_init(void);
 void	ft_threads_create(t_thread *threads);
 void	ft_array_create(pthread_t **philosophers, int **n);
 
@@ -28,12 +28,12 @@ int main(int argc, char **argv)
 	if (argc < 5 || argc > 6)
 		ft_error(ARG_ERR);
 	ft_get_data(argv);
-	ft_mutex_init();
+	ft_semaphore_init();
 	ft_threads_create(&threads);	
 	return (0);
 }
 
-void	ft_mutex_init(void)
+void	ft_semaphore_init(void)
 {
 	sem_unlink("print_sem");
 	sem_unlink("fork_sem");
