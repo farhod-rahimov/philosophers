@@ -50,7 +50,7 @@ typedef struct s_struct
 typedef struct s_thread
 {
 	pthread_t philosopher;
-	pthread_t monitor;
+	// pthread_t monitor;
 	pthread_t check_death;
 } t_thread;
 
@@ -69,7 +69,7 @@ void	ft_error(char *str);
 long long int	ft_get_time(void);
 void			ft_get_data(char **argv);
 
-void			*ft_work_in_thread(void *n);
+void			*ft_work_phil(void *n);
 void    		ft_eat_phil(int n, long long int current);
 void    		ft_sleep_phil(int n, long long int current);
 void    		ft_think_phil(int n, long long int current);

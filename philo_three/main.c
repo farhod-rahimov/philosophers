@@ -6,13 +6,13 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 19:41:08 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 20:47:21 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
-void	ft_semaphore_init(void);
-void	ft_process_create(t_thread *threads);
+void	ft_mutex_init(void);
+void	ft_threads_create(t_thread *threads);
 void	ft_array_create(int **n);
 
 void	ft_error(char *str)
@@ -28,12 +28,12 @@ int main(int argc, char **argv)
 	if (argc < 5 || argc > 6)
 		ft_error(ARG_ERR);
 	ft_get_data(argv);
-	ft_semaphore_init();
-	ft_process_create(&threads);	
+	ft_mutex_init();
+	ft_threads_create(&threads);	
 	return (0);
 }
 
-void	ft_semaphore_init(void)
+void	ft_mutex_init(void)
 {
 	sem_unlink("print_sem");
 	sem_unlink("fork_sem");
@@ -43,29 +43,26 @@ void	ft_semaphore_init(void)
 		ft_error(SEM_ERR);
 }
 
-void	ft_process_create(t_thread *threads)
+void	ft_threads_create(t_thread *threads)
 {
-	(void)threads;
 	int			*n;
 	int			i;
-	pid_t		pid;
 	int			status;
+	pid_t		pid;
 	
 	ft_array_create(&n);
-	i = 0;
 	// pthread_create(&threads->monitor, NULL, ft_monitor, NULL);
+	i = 0;
 	data.start_time = ft_get_time();
 	while (i < data.num_phils)
 	{
 		if ((pid = fork()) == 0)
 		{
-			ft_work_in_thread((void *)&n[i]);
-			usleep(data.time_eat / 2);
-			pthread_create(&threads->check_death, NULL, ft_check_death_phil, (void *)&n[i]);
-			pthread_join(threads->check_death, NULL);
+			pthread_create(&threads->philosopher, NULL, ft_check_death_phil, (void *)&n[i]);
+			ft_work_phil((void *)&n[i]);
+			pthread_join(threads->philosopher, NULL);
 			exit(0);
 		}
-		// usleep(150);
 		i++;
 	}
 	waitpid(pid, &status, 0);
