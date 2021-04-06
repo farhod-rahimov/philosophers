@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:30:37 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 14:04:48 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 16:51:25 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	*ft_work_in_thread(void *n)
 			ft_eat_phil(*(int *)n, current);
 		}
 	}
+	exit(0);
 	return (NULL);
 }
 
