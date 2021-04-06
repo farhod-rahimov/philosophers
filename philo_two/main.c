@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 11:27:40 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 11:33:39 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,10 @@ int main(int argc, char **argv)
 
 void	ft_mutex_init(void)
 {
-	int i;
-
-	i = 0;
-	if ((fork_mutex = (m_t *)malloc(sizeof(m_t) * data.num_phils)) == NULL)
-		ft_error(MALLOC_ERR);
-	i = 0;
-	while (i < data.num_phils)
-		pthread_mutex_init(&fork_mutex[i++], NULL);
-	// pthread_mutex_init(&print_mutex, NULL);
 	sem_unlink("print_sem");
+	sem_unlink("fork_sem");
+	if ((fork_sem = sem_open("fork_sem", O_CREAT, 0666, data.num_phils)) == SEM_FAILED)
+		ft_error(SEM_ERR);
 	if ((print_sem = sem_open("print_sem", O_CREAT, 0666, 1)) == SEM_FAILED)
 		ft_error(SEM_ERR);
 }

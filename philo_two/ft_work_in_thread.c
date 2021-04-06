@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:30:37 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 11:28:45 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 11:32:37 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ void    ft_eat_phil(int n, long long int current)
 	// pthread_mutex_unlock(&print_mutex);
 	sem_post(print_sem);
 	ft_sleep(data.time_eat);
-	pthread_mutex_unlock(&fork_mutex[n]);
-	if (n + 1 == data.num_phils)
-		pthread_mutex_unlock(&fork_mutex[0]);
-	else
-		pthread_mutex_unlock(&fork_mutex[n + 1]);
+	sem_post(fork_sem);
+	sem_post(fork_sem);
+	// pthread_mutex_unlock(&fork_mutex[n]);
+	// if (n + 1 == data.num_phils)
+	// 	pthread_mutex_unlock(&fork_mutex[0]);
+	// else
+	// 	pthread_mutex_unlock(&fork_mutex[n + 1]);
 	if (--data.num_eat_phil[n] == 0)
 		return ;
 	data.should_eat[n] = 2;

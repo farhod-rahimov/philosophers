@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:30:28 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 10:37:18 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 11:34:08 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,10 @@ void    *ft_monitor(void *nill)
 		i = 0;
 		while (i < data.num_phils)
 		{
-			pthread_mutex_lock(&fork_mutex[i]);
-			if (i + 1 == data.num_phils)
-				pthread_mutex_lock(&fork_mutex[0]);
-			else
-				pthread_mutex_lock(&fork_mutex[i + 1]);
+			sem_wait(fork_sem);
+			sem_wait(fork_sem);
 			data.should_eat[i] = 1;
-			i += 2;
-		}
-		i = 1;
-		while (i < data.num_phils)
-		{
-			pthread_mutex_lock(&fork_mutex[i]);
-			if (i + 1 == data.num_phils)
-				pthread_mutex_lock(&fork_mutex[0]);
-			else
-				pthread_mutex_lock(&fork_mutex[i + 1]);
-			data.should_eat[i] = 1;
-			i += 2;
+			i++;
 		}
 		data.num_eat--;
 	}
