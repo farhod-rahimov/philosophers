@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 11:30:44 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 11:35:27 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # define SEM_ERR "Error. Cannot create semaphore\n"
 
 typedef struct timeval	tv;
-typedef pthread_mutex_t	m_t;
 
 // time_t       tv_sec;   /* seconds since Jan. 1, 1970 */
 // suseconds_t  tv_usec;
@@ -55,9 +54,7 @@ typedef struct s_thread
 } t_thread;
 
 sem_t	*fork_sem;
-m_t		*fork_mutex;
 sem_t	*print_sem;
-m_t		print_mutex;
 t_data	data;
 
 int		ft_atoi(const char *str);
