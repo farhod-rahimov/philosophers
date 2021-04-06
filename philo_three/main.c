@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 14:15:35 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 19:32:09 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,39 +45,31 @@ void	ft_semaphore_init(void)
 
 void	ft_process_create(t_thread *threads)
 {
+	(void)threads;
 	int			*n;
 	int			i;
 	pid_t		pid;
 	int			status;
 	
 	ft_array_create(&n);
-	data.start_time = ft_get_time();
 	i = 0;
 	// pthread_create(&threads->monitor, NULL, ft_monitor, NULL);
 	while (i < data.num_phils)
 	{
 		if ((pid = fork()) == 0)
 		{
-			pthread_create(&threads->philosopher, NULL, ft_work_in_thread, (void *)&n[i]);
+			data.start_time = ft_get_time();
+			ft_work_in_thread((void *)&n[i]);
 			usleep(data.time_eat / 2);
 			pthread_create(&threads->check_death, NULL, ft_check_death_phil, (void *)&n[i]);
 			pthread_join(threads->check_death, NULL);
-			pthread_join(threads->philosopher, NULL);
-			break ;
-		}
-		else
-		{
-			waitpid(pid, &status, 0);
-			if (WEXITSTATUS(status) == 1)
-				kill(0, 9);
+			exit(0);
 		}
 		usleep(150);
 		i++;
 	}
-	// pthread_join(threads->monitor, NULL);
+	waitpid(pid, &status, 0);
 }
-
-
 
 void	ft_array_create(int **n)
 {
