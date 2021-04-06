@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 11:12:29 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 11:27:40 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ void	ft_mutex_init(void)
 	i = 0;
 	while (i < data.num_phils)
 		pthread_mutex_init(&fork_mutex[i++], NULL);
-	pthread_mutex_init(&print_mutex, NULL);
-	// if ((print_sem = sem_open("/print_sem", O_CREAT, 0666, 1)) == SEM_FAILED)
-	// 	ft_error(SEM_ERR);
+	// pthread_mutex_init(&print_mutex, NULL);
+	sem_unlink("print_sem");
+	if ((print_sem = sem_open("print_sem", O_CREAT, 0666, 1)) == SEM_FAILED)
+		ft_error(SEM_ERR);
 }
 
 void	ft_threads_create(t_thread *threads)

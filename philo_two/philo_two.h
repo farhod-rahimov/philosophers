@@ -6,7 +6,7 @@
 /*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 11:12:51 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/06 11:26:57 by farhod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_thread
 } t_thread;
 
 m_t		*fork_mutex;
-// sem_t	*print_sem;
+sem_t	*print_sem;
 m_t		print_mutex;
 t_data	data;
 
