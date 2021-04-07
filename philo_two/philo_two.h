@@ -6,7 +6,7 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <stdlib.h>
-#include <semaphore.h>
+# include <semaphore.h>
 
 # define ARG_ERR "Error. The number of arguments should be 4 or 5\n"
 # define PHIL_ERR "Error. The number of philosophers should be greater than 1\n"
