@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_work_in_thread.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:30:37 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/05 20:02:07 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/07 13:51:1 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_work_in_thread(void *n)
 	long long int current;
 	
 	data.start_starving[*(int *)n] = ft_get_time();
-	while (data.num_eat_phil[*(int *)n])
+	while (1)
 	{
 		if (data.should_eat[*(int *)n] == 1 && !data.is_sleeping[*(int *)n] && !data.is_thinking[*(int *)n])
 		{
@@ -45,8 +45,11 @@ void    ft_eat_phil(int n, long long int current)
 		pthread_mutex_unlock(&fork_mutex[0]);
 	else
 		pthread_mutex_unlock(&fork_mutex[n + 1]);
-	if (--data.num_eat_phil[n] == 0)
-		return ;
+	if (--data.total_num_eat <= 0 && data.num_eat != -1)
+	{
+		pthread_mutex_lock(&print_mutex);
+		exit(0);
+	}
 	data.should_eat[n] = 2;
 	return (ft_sleep_phil(n, current + data.time_eat));
 }
@@ -77,5 +80,5 @@ void	ft_sleep(long long int milliseconds)
 
 	start_time = ft_get_time();
 	while (ft_get_time() - start_time <= milliseconds)
-		;
+		usleep(50);
 }

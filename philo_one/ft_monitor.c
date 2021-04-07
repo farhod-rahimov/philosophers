@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_monitor.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:30:28 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/05 20:42:17 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/07 13:51:20 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void    *ft_monitor(void *nill)
 {
 	int i;
 
-	while (data.num_eat)
+	while (1)
 	{
 		i = 0;
 		while (i < data.num_phils)
@@ -40,7 +40,6 @@ void    *ft_monitor(void *nill)
 			data.should_eat[i] = 1;
 			i += 2;
 		}
-		data.num_eat--;
 	}
 	return (nill);
 }
