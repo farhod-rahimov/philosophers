@@ -16,7 +16,8 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include <signal.h>
-#include "../liba/libft.h"
+#include <stdlib.h>
+// #include "../liba/libft.h"
 
 # define ARG_ERR "Error. The number of arguments should be 4 or 5\n"
 # define PHIL_ERR "Error. The number of philosophers should be greater than 1\n"

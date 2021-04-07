@@ -6,7 +6,7 @@
 /*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:12:20 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/07 14:20:00 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/07 14:43:05 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@ void    ft_eat_phil(int n, long long int current)
 	ft_sleep(data.time_eat);
 	sem_post(fork_sem);
 	sem_post(fork_sem);
-	if (--data.num_eat == 0)
-		exit(0);
+	if (--data.num_eat == 0 && n == data.num_phils - 1)
+	{
+		sem_wait(print_sem);
+		kill(0, 2);
+	}
 	return (ft_sleep_phil(n, current + data.time_eat));
 }
 

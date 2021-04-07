@@ -6,7 +6,7 @@
 /*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/07 14:30:16 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/07 14:34:22 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <semaphore.h>
-#include "../liba/libft.h"
+#include <stdlib.h>
+// #include "../liba/libft.h"
 
 # define ARG_ERR "Error. The number of arguments should be 4 or 5\n"
 # define PHIL_ERR "Error. The number of philosophers should be greater than 1\n"
