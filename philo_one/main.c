@@ -6,7 +6,7 @@
 /*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/07 15:00:28 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/07 15:43:18 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ void	ft_mutex_init(void)
 	int i;
 
 	i = 0;
-	if ((fork_mutex = (m_t *)malloc(sizeof(m_t) * g_data.num_phils)) == NULL)
+	if ((g_fork_mutex = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * g_data.num_phils)) == NULL)
 		ft_error(MALLOC_ERR);
 	i = 0;
 	while (i < g_data.num_phils)
-		pthread_mutex_init(&fork_mutex[i++], NULL);
-	pthread_mutex_init(&print_mutex, NULL);
+		pthread_mutex_init(&g_fork_mutex[i++], NULL);
+	pthread_mutex_init(&g_print_mutex, NULL);
 }
 
 void	ft_threads_create(t_thread *threads)

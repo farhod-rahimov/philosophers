@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 13:25:30 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/05 20:15:57 by farhod           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../philo_one.h"
 
-static	int		ft_atoi_ft(const char *str, long long int i)
+static	int	ft_atoi_ft(const char *str, long long int i)
 {
 	while (str[i])
 	{
@@ -28,7 +16,7 @@ static	int		ft_atoi_ft(const char *str, long long int i)
 	return (i);
 }
 
-static	int		ft_atoi_min(const char *s)
+static	int	ft_atoi_min(const char *s)
 {
 	long long int	i;
 	long long int	ret_min;
@@ -49,7 +37,7 @@ static	int		ft_atoi_min(const char *s)
 	return (ret = ret_min * -1);
 }
 
-int				ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	long long int	i;
 	long long int	ii;
@@ -58,7 +46,8 @@ int				ft_atoi(const char *str)
 
 	i = 0;
 	ret = 0;
-	if ((ii = ft_atoi_ft(str, i)) == -2)
+	ii = ft_atoi_ft(str, i);
+	if (ii == -2)
 		return (0);
 	i = ii;
 	while (str[i])

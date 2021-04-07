@@ -6,7 +6,7 @@
 #    By: btammara <btammara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/06 16:30:33 by btammara          #+#    #+#              #
-#    Updated: 2021/04/07 14:15:42 by btammara         ###   ########.fr        #
+#    Updated: 2021/04/07 15:34:00 by btammara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,19 +31,19 @@ FLAGS =			-Wall -Wextra -Werror
 NAME =			philo_one
 
 %.o:			%.c
-				@ $(GCC) -c $(FLAGS) $< -o $(<:.c=.o)
+				$(GCC) -c $(FLAGS) $< -o $(<:.c=.o)
 
 all: 			$(NAME)
 
 $(NAME):		$(OBJS)
-				@ $(GCC) -o $(NAME) $(OBJS)
-				@ echo 'philo_one built, run ./philo_one'
+				$(GCC) -o $(NAME) $(OBJS)
+				echo 'philo_one built, run ./philo_one'
 
 clean:
-				@ rm -f $(OBJS)
+				rm -f $(OBJS)
 
 fclean:			clean
-				@ rm -f $(NAME)
+				rm -f $(NAME)
 
 re:				fclean all
 

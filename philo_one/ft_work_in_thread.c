@@ -22,10 +22,10 @@ void	*ft_work_in_thread(void *n)
 		if (g_data.should_eat[*(int *)n] == 1 && !g_data.is_sleeping[*(int *)n] && !g_data.is_thinking[*(int *)n])
 		{
 			current = ft_get_time();
-			pthread_mutex_lock(&print_mutex);
+			pthread_mutex_lock(&g_print_mutex);
 			ft_print(current - g_data.start_time, *(int *)n, " has taken a fork\n");
 			ft_print(current - g_data.start_time, *(int *)n, " has taken a fork\n");
-			pthread_mutex_unlock(&print_mutex);
+			pthread_mutex_unlock(&g_print_mutex);
 			
 			ft_eat_phil(*(int *)n, current);
 		}
@@ -36,18 +36,18 @@ void	*ft_work_in_thread(void *n)
 void    ft_eat_phil(int n, long long int current)
 {
 	g_data.start_starving[n] = current;
-	pthread_mutex_lock(&print_mutex);
+	pthread_mutex_lock(&g_print_mutex);
 	ft_print(current - g_data.start_time, n, " is eating\n");
-	pthread_mutex_unlock(&print_mutex);
+	pthread_mutex_unlock(&g_print_mutex);
 	ft_sleep(g_data.time_eat);
-	pthread_mutex_unlock(&fork_mutex[n]);
+	pthread_mutex_unlock(&g_fork_mutex[n]);
 	if (n + 1 == g_data.num_phils)
-		pthread_mutex_unlock(&fork_mutex[0]);
+		pthread_mutex_unlock(&g_fork_mutex[0]);
 	else
-		pthread_mutex_unlock(&fork_mutex[n + 1]);
+		pthread_mutex_unlock(&g_fork_mutex[n + 1]);
 	if (--g_data.total_num_eat <= 0 && g_data.num_eat != -1)
 	{
-		pthread_mutex_lock(&print_mutex);
+		pthread_mutex_lock(&g_print_mutex);
 		exit(0);
 	}
 	g_data.should_eat[n] = 2;
@@ -57,9 +57,9 @@ void    ft_eat_phil(int n, long long int current)
 void    ft_sleep_phil(int n, long long int current)
 {
 	g_data.is_sleeping[n] = 1;
-	pthread_mutex_lock(&print_mutex);
+	pthread_mutex_lock(&g_print_mutex);
 	ft_print(current - g_data.start_time, n, " is sleeping\n");
-	pthread_mutex_unlock(&print_mutex);
+	pthread_mutex_unlock(&g_print_mutex);
 	ft_sleep(g_data.time_sleep);
 	g_data.is_sleeping[n] = 0;
 	return (ft_think_phil(n, current + g_data.time_sleep));
@@ -68,9 +68,9 @@ void    ft_sleep_phil(int n, long long int current)
 void    ft_think_phil(int n, long long int current)
 {
 	g_data.is_thinking[n] = 1;
-	pthread_mutex_lock(&print_mutex);
+	pthread_mutex_lock(&g_print_mutex);
 	ft_print(current - g_data.start_time, n, " is thinking\n");
-	pthread_mutex_unlock(&print_mutex);
+	pthread_mutex_unlock(&g_print_mutex);
 	g_data.is_thinking[n] = 0;
 }
 
