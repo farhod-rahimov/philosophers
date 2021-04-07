@@ -26,7 +26,7 @@ typedef struct s_struct
 	int				num_eat;
 	int				total_num_eat;
 
-    int				*should_eat;
+	int				*should_eat;
 	int				*is_sleeping;
 	int				*is_thinking;
 }	t_data;
@@ -40,7 +40,7 @@ typedef struct s_thread
 
 pthread_mutex_t	*g_fork_mutex;
 pthread_mutex_t	g_print_mutex;
-t_data	g_data;
+t_data			g_data;
 
 /*********************MINI_LIBFT********************/
 int				ft_atoi(const char *str);
