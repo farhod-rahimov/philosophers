@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 21:08:26 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/07 13:25:12 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int main(int argc, char **argv)
 
 void	ft_mutex_init(void)
 {
-	sem_unlink("print_sem");
-	sem_unlink("fork_sem");
-	if ((fork_sem = sem_open("fork_sem", O_CREAT, 0666, data.num_phils)) == SEM_FAILED)
+	sem_unlink("/print_sem");
+	sem_unlink("/fork_sem");
+	if ((fork_sem = sem_open("/fork_sem", O_CREAT, 0666, data.num_phils)) == SEM_FAILED)
 		ft_error(SEM_ERR);
-	if ((print_sem = sem_open("print_sem", O_CREAT, 0666, 1)) == SEM_FAILED)
+	if ((print_sem = sem_open("/print_sem", O_CREAT, 0666, 1)) == SEM_FAILED)
 		ft_error(SEM_ERR);
 }
 

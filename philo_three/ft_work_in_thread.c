@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_work_in_thread.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:30:37 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 20:36:16 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/07 13:33:51 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ void	ft_sleep(long long int milliseconds)
 
 	start_time = ft_get_time();
 	while (ft_get_time() - start_time <= milliseconds)
-		;
+		usleep(50);
 }
