@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 17:28:34 by farhod            #+#    #+#             */
-/*   Updated: 2021/04/06 10:37:18 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:22:46 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,12 @@ void    ft_print(long long int current, int n, char *str)
     ft_putstr_fd(" ", 1);
     ft_putnbr_fd(n + 1, 1);
     ft_putstr_fd(str, 1);
+}
+
+long long int ft_get_time(void)
+{
+	tv	time;
+
+	gettimeofday(&time, NULL);
+	return ((long long int)(time.tv_sec * 1000 + time.tv_usec * 0.001));
 }

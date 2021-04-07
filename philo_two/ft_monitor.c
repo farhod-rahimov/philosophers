@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_monitor.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:30:28 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 11:34:08 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:28:29 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void    *ft_monitor(void *nill)
 {
 	int i;
 
-	while (data.num_eat)
+	while (1)
 	{
 		i = 0;
 		while (i < data.num_phils)
@@ -26,15 +26,6 @@ void    *ft_monitor(void *nill)
 			data.should_eat[i] = 1;
 			i++;
 		}
-		data.num_eat--;
 	}
 	return (nill);
-}
-
-long long int ft_get_time(void)
-{
-	tv	time;
-
-	gettimeofday(&time, NULL);
-	return ((long long int)(time.tv_sec * 1000 + time.tv_usec * 0.001));
 }

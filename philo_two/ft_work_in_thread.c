@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_work_in_thread.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:30:37 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 11:37:53 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/07 14:28:34 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_work_in_thread(void *n)
 	long long int current;
 	
 	data.start_starving[*(int *)n] = ft_get_time();
-	while (data.num_eat_phil[*(int *)n])
+	while (1)
 	{
 		if (data.should_eat[*(int *)n] == 1 && !data.is_sleeping[*(int *)n] && !data.is_thinking[*(int *)n])
 		{
@@ -42,8 +42,12 @@ void    ft_eat_phil(int n, long long int current)
 	ft_sleep(data.time_eat);
 	sem_post(fork_sem);
 	sem_post(fork_sem);
-	if (--data.num_eat_phil[n] == 0)
-		return ;
+	if (--data.total_num_eat <= 0 && data.num_eat != -1)
+	{
+		sem_wait(print_sem);
+		exit(0);
+	}
+
 	data.should_eat[n] = 2;
 	return (ft_sleep_phil(n, current + data.time_eat));
 }
@@ -74,5 +78,5 @@ void	ft_sleep(long long int milliseconds)
 
 	start_time = ft_get_time();
 	while (ft_get_time() - start_time <= milliseconds)
-		;
+		usleep(50);
 }
