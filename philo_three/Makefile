@@ -3,18 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: farhod <farhod@student.42.fr>              +#+  +:+       +#+         #
+#    By: btammara <btammara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/06 16:30:33 by btammara          #+#    #+#              #
-#    Updated: 2021/04/06 11:45:59 by farhod           ###   ########.fr        #
+#    Updated: 2021/04/07 14:15:11 by btammara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =			./main.c \
 				./ft_check_death_phil.c \
-				./ft_monitor.c \
-				./ft_print.c \
-				./ft_work_in_thread.c \
+				./utils.c \
+				./ft_work_phil.c \
 				./ft_get_data.c \
 				./mini_libft/ft_atoi.c \
 				./mini_libft/ft_bzero.c \

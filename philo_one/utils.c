@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_monitor.c                                       :+:      :+:    :+:   */
+/*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/04 17:30:28 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 11:45:59 by farhod           ###   ########.fr       */
+/*   Created: 2021/04/05 17:28:34 by farhod            #+#    #+#             */
+/*   Updated: 2021/04/07 14:15:30 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_three.h"
+#include "philo_one.h"
 
-void    *ft_monitor(void *nill)
+void    ft_print(long long int current, int n, char *str)
 {
-	int i;
-
-	while (data.num_eat)
-	{
-		i = 0;
-		while (i < data.num_phils)
-		{
-			sem_wait(fork_sem);
-			sem_wait(fork_sem);
-			data.should_eat[i] = 1;
-			i++;
-		}
-		data.num_eat--;
-	}
-	return (nill);
+    ft_putnbr_fd((int)current, 1);
+    ft_putstr_fd(" ", 1);
+    ft_putnbr_fd(n + 1, 1);
+    ft_putstr_fd(str, 1);
 }
 
 long long int ft_get_time(void)

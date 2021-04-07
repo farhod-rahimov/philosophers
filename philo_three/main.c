@@ -6,7 +6,7 @@
 /*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:06:26 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/07 13:25:12 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/07 14:14:14 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	ft_threads_create(t_thread *threads)
 	pid_t		pid;
 	
 	ft_array_create(&n);
-	// pthread_create(&threads->monitor, NULL, ft_monitor, NULL);
 	i = 0;
 	data.start_time = ft_get_time();
 	while (i < data.num_phils)

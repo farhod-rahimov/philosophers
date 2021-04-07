@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_work_in_thread.c                                :+:      :+:    :+:   */
+/*   ft_work_phil.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/04 17:30:37 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/07 13:33:51 by btammara         ###   ########.fr       */
+/*   Created: 2021/04/07 14:12:20 by btammara          #+#    #+#             */
+/*   Updated: 2021/04/07 14:20:00 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	*ft_work_phil(void *n)
 {
 	long long int current;
 	
-	data.start_starving[*(int *)n] = ft_get_time();
-	while (data.num_eat_phil[*(int *)n])
+	data.start_starving = ft_get_time();
+	while (1)
 	{
-		if (/*data.should_eat[*(int *)n] == 1 && */!data.is_sleeping[*(int *)n] && !data.is_thinking[*(int *)n])
+		if (!data.is_sleeping[*(int *)n] && !data.is_thinking[*(int *)n])
 		{
 			sem_wait(fork_sem);
 			sem_wait(fork_sem);
@@ -32,22 +32,20 @@ void	*ft_work_phil(void *n)
 			ft_eat_phil(*(int *)n, current);
 		}
 	}
-	exit(0);
 	return (NULL);
 }
 
 void    ft_eat_phil(int n, long long int current)
 {
-	data.start_starving[n] = current;
+	data.start_starving = current;
 	sem_wait(print_sem);
 	ft_print(current - data.start_time, n, " is eating\n");
 	sem_post(print_sem);
 	ft_sleep(data.time_eat);
 	sem_post(fork_sem);
 	sem_post(fork_sem);
-	if (--data.num_eat_phil[n] == 0)
-		return ;
-	data.should_eat[n] = 2;
+	if (--data.num_eat == 0)
+		exit(0);
 	return (ft_sleep_phil(n, current + data.time_eat));
 }
 

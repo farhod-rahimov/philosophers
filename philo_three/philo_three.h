@@ -34,15 +34,13 @@ typedef struct s_struct
 {
 	long long int	start_time;
 	
-	long long int	*start_starving;
+	long long int	start_starving;
 	int				num_phils;
 	int				time_die;
 	int				time_eat;
 	int				time_sleep;
 	int				num_eat;
 	
-	int				*num_eat_phil;
-    int				*should_eat;
 	int				*is_sleeping;
 	int				*is_thinking;
 }	t_data;
@@ -50,7 +48,6 @@ typedef struct s_struct
 typedef struct s_thread
 {
 	pthread_t philosopher;
-	// pthread_t monitor;
 	pthread_t check_death;
 } t_thread;
 
