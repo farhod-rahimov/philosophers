@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 15:08:23 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 11:45:59 by farhod           ###   ########.fr       */
+/*   Updated: 2021/04/07 17:28:44 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo_three.h"
+#include "../philo_two.h"
 
 size_t	ft_strlen(const char *s)
 {

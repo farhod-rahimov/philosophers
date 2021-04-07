@@ -6,11 +6,11 @@
 /*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 11:08:28 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/07 15:28:16 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/07 17:28:38 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo_three.h"
+#include "../philo_two.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

@@ -1,4 +1,4 @@
-#include "../philo_three.h"
+#include "../philo_two.h"
 
 void	ft_bzero(void *s, size_t n)
 {

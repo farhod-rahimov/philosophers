@@ -1,39 +1,25 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   philo_two.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/07 15:00:28 by btammara         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef PHILO_TWO_H
+# define PHILO_TWO_H
 
-#include <sys/time.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <pthread.h>
+# include <sys/time.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <stdlib.h>
 #include <semaphore.h>
-#include <stdlib.h>
-// #include "../liba/libft.h"
 
 # define ARG_ERR "Error. The number of arguments should be 4 or 5\n"
 # define PHIL_ERR "Error. The number of philosophers should be greater than 1\n"
 # define TIME_ERR "Error. Time cannot be negative\n"
-# define EAT_ERR "Error. The number of times each philosopher must eat cannot be negative\n"
+# define EAT_ERR "Error. The number of times each philosopher must eat \
+cannot be negative\n"
 # define MALLOC_ERR "Error. Cannot allocate memmory\n"
 # define SEM_ERR "Error. Cannot create semaphore\n"
-
-typedef struct struct timeval	struct timeval;
-
-// time_t       struct timeval_sec;   /* seconds since Jan. 1, 1970 */
-// suseconds_t  struct timeval_usec;
 
 typedef struct s_struct
 {
 	long long int	start_time;
-	
+
 	long long int	*start_starving;
 	int				num_phils;
 	int				time_die;
@@ -41,49 +27,55 @@ typedef struct s_struct
 	int				time_sleep;
 	int				num_eat;
 	int				total_num_eat;
-	
-    int				*should_eat;
+
+	int				*should_eat;
 	int				*is_sleeping;
 	int				*is_thinking;
 }	t_data;
 
 typedef struct s_thread
 {
-	pthread_t *philosophers;
-	pthread_t monitor;
-	pthread_t check_death;
-} t_thread;
+	pthread_t		*philosophers;
+	pthread_t		monitor;
+	pthread_t		check_death;
+}	t_thread;
 
 sem_t	*g_fork_sem;
 sem_t	*g_print_sem;
 t_data	g_data;
 
-int		ft_atoi(const char *str);
-void	ft_bzero(void *s, size_t n);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putstr_fd(char *s, int fd);
-size_t	ft_strlen(const char *s);
+/*********************MINI_LIBFT********************/
+int				ft_atoi(const char *str);
+void			ft_bzero(void *s, size_t n);
+void			ft_putnbr_fd(int n, int fd);
+void			ft_putstr_fd(char *s, int fd);
+size_t			ft_strlen(const char *s);
 
-void	ft_error(char *str);
-
+/**********************UTILS.C**********************/
+void			ft_print(long long int current, int n, char *str);
 long long int	ft_get_time(void);
+void			ft_error(char *str);
+void			ft_array_create(pthread_t **philosophers, int **n);
+void			ft_sleep(long long int milliseconds);
+
+/***********************MAIN.C**********************/
+void			ft_semaphores_init(void);
+void			ft_threads_create(t_thread *threads);
+
+/*******************FT_GET_DATA.C*******************/
 void			ft_get_data(char **argv);
 
+/****************FT_WORK_IN_THREAD.C****************/
 void			*ft_work_in_thread(void *n);
-void    		ft_eat_phil(int n, long long int current);
-void    		ft_sleep_phil(int n, long long int current);
-void    		ft_think_phil(int n, long long int current);
-void			ft_print(long long int current, int n, char *str);
+void			*ft_work_phil(void *n);
+void			ft_eat_phil(int n, long long int current);
+void			ft_sleep_phil(int n, long long int current);
+void			ft_think_phil(int n, long long int current);
 
+/******************FT_CHECK_DEATH.C*****************/
+void			*ft_check_death_phil(void *n);
+
+/********************FT_MONITOR.C*******************/
 void			*ft_monitor(void *nil);
-void    		*ft_check_death_phil(void *nill);
-void			ft_sleep(long long int milliseconds);
-// 4 410 200 200
-// 4 410 200 200 7
-// 4 410 200 200 10
-// 4 410 200 200 10
-// 4 410 200 200 12
-// 4 410 200 200 15
 
-// 2 60 60 60
-// 10 410 200 200
+#endif
