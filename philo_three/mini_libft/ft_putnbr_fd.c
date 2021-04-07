@@ -1,20 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: farhod <farhod@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 11:19:59 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/06 11:45:59 by farhod           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../philo_three.h"
 
 static	int	ccounter(int n1)
 {
-	int counter;
+	int	counter;
 
 	counter = 0;
 	while (n1 != 0)
@@ -25,7 +13,7 @@ static	int	ccounter(int n1)
 	return (counter);
 }
 
-int			check_easy(int n, int fd)
+int	check_easy(int n, int fd)
 {
 	if (n == -2147483648)
 	{
@@ -40,9 +28,9 @@ int			check_easy(int n, int fd)
 	return (0);
 }
 
-void		positive(int n, int fd)
+void	positive(int n, int fd)
 {
-	char	str[ccounter(n) + 1];
+	char	str[25];
 	int		count;
 	int		i;
 
@@ -59,9 +47,9 @@ void		positive(int n, int fd)
 		write(fd, &str[i++], 1);
 }
 
-void		negative(int n, int fd)
+void	negative(int n, int fd)
 {
-	char	str[ccounter(n) + 2];
+	char	str[25];
 	int		count;
 	int		i;
 
@@ -80,10 +68,10 @@ void		negative(int n, int fd)
 		write(fd, &str[i++], 1);
 }
 
-void		ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	int	i;
-	int count;
+	int	count;
 
 	count = ccounter(n);
 	i = count;

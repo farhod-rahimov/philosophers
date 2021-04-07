@@ -6,7 +6,7 @@
 /*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:30:28 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/07 14:28:29 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/07 15:00:28 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void    *ft_monitor(void *nill)
 	while (1)
 	{
 		i = 0;
-		while (i < data.num_phils)
+		while (i < g_data.num_phils)
 		{
-			sem_wait(fork_sem);
-			sem_wait(fork_sem);
-			data.should_eat[i] = 1;
+			sem_wait(g_fork_sem);
+			sem_wait(g_fork_sem);
+			g_data.should_eat[i] = 1;
 			i++;
 		}
 	}

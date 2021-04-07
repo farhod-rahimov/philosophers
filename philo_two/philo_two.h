@@ -6,7 +6,7 @@
 /*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/07 14:34:22 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/07 15:00:28 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 # define MALLOC_ERR "Error. Cannot allocate memmory\n"
 # define SEM_ERR "Error. Cannot create semaphore\n"
 
-typedef struct timeval	tv;
+typedef struct struct timeval	struct timeval;
 
-// time_t       tv_sec;   /* seconds since Jan. 1, 1970 */
-// suseconds_t  tv_usec;
+// time_t       struct timeval_sec;   /* seconds since Jan. 1, 1970 */
+// suseconds_t  struct timeval_usec;
 
 typedef struct s_struct
 {
@@ -54,9 +54,9 @@ typedef struct s_thread
 	pthread_t check_death;
 } t_thread;
 
-sem_t	*fork_sem;
-sem_t	*print_sem;
-t_data	data;
+sem_t	*g_fork_sem;
+sem_t	*g_print_sem;
+t_data	g_data;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);

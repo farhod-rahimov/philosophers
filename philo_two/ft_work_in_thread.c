@@ -6,7 +6,7 @@
 /*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 17:30:37 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/07 14:28:34 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/07 15:00:28 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	*ft_work_in_thread(void *n)
 {
 	long long int current;
 	
-	data.start_starving[*(int *)n] = ft_get_time();
+	g_data.start_starving[*(int *)n] = ft_get_time();
 	while (1)
 	{
-		if (data.should_eat[*(int *)n] == 1 && !data.is_sleeping[*(int *)n] && !data.is_thinking[*(int *)n])
+		if (g_data.should_eat[*(int *)n] == 1 && !g_data.is_sleeping[*(int *)n] && !g_data.is_thinking[*(int *)n])
 		{
 			current = ft_get_time();
-			sem_wait(print_sem);
-			ft_print(current - data.start_time, *(int *)n, " has taken a fork\n");
-			ft_print(current - data.start_time, *(int *)n, " has taken a fork\n");
-			sem_post(print_sem);
+			sem_wait(g_print_sem);
+			ft_print(current - g_data.start_time, *(int *)n, " has taken a fork\n");
+			ft_print(current - g_data.start_time, *(int *)n, " has taken a fork\n");
+			sem_post(g_print_sem);
 			
 			ft_eat_phil(*(int *)n, current);
 		}
@@ -35,41 +35,41 @@ void	*ft_work_in_thread(void *n)
 
 void    ft_eat_phil(int n, long long int current)
 {
-	data.start_starving[n] = current;
-	sem_wait(print_sem);
-	ft_print(current - data.start_time, n, " is eating\n");
-	sem_post(print_sem);
-	ft_sleep(data.time_eat);
-	sem_post(fork_sem);
-	sem_post(fork_sem);
-	if (--data.total_num_eat <= 0 && data.num_eat != -1)
+	g_data.start_starving[n] = current;
+	sem_wait(g_print_sem);
+	ft_print(current - g_data.start_time, n, " is eating\n");
+	sem_post(g_print_sem);
+	ft_sleep(g_data.time_eat);
+	sem_post(g_fork_sem);
+	sem_post(g_fork_sem);
+	if (--g_data.total_num_eat <= 0 && g_data.num_eat != -1)
 	{
-		sem_wait(print_sem);
+		sem_wait(g_print_sem);
 		exit(0);
 	}
 
-	data.should_eat[n] = 2;
-	return (ft_sleep_phil(n, current + data.time_eat));
+	g_data.should_eat[n] = 2;
+	return (ft_sleep_phil(n, current + g_data.time_eat));
 }
 
 void    ft_sleep_phil(int n, long long int current)
 {
-	data.is_sleeping[n] = 1;
-	sem_wait(print_sem);
-	ft_print(current - data.start_time, n, " is sleeping\n");
-	sem_post(print_sem);
-	ft_sleep(data.time_sleep);
-	data.is_sleeping[n] = 0;
-	return (ft_think_phil(n, current + data.time_sleep));
+	g_data.is_sleeping[n] = 1;
+	sem_wait(g_print_sem);
+	ft_print(current - g_data.start_time, n, " is sleeping\n");
+	sem_post(g_print_sem);
+	ft_sleep(g_data.time_sleep);
+	g_data.is_sleeping[n] = 0;
+	return (ft_think_phil(n, current + g_data.time_sleep));
 }
 
 void    ft_think_phil(int n, long long int current)
 {
-	data.is_thinking[n] = 1;
-	sem_wait(print_sem);
-	ft_print(current - data.start_time, n, " is thinking\n");
-	sem_post(print_sem);
-	data.is_thinking[n] = 0;
+	g_data.is_thinking[n] = 1;
+	sem_wait(g_print_sem);
+	ft_print(current - g_data.start_time, n, " is thinking\n");
+	sem_post(g_print_sem);
+	g_data.is_thinking[n] = 0;
 }
 
 void	ft_sleep(long long int milliseconds)

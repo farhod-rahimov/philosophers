@@ -6,7 +6,7 @@
 /*   By: btammara <btammara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 13:07:17 by btammara          #+#    #+#             */
-/*   Updated: 2021/04/07 14:33:37 by btammara         ###   ########.fr       */
+/*   Updated: 2021/04/07 15:00:28 by btammara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 # define EAT_ERR "Error. The number of times each philosopher must eat cannot be negative\n"
 # define MALLOC_ERR "Error. Cannot allocate memmory\n"
 
-typedef struct timeval	tv;
+typedef struct struct timeval	struct timeval;
 typedef pthread_mutex_t	m_t;
 
-// time_t       tv_sec;   /* seconds since Jan. 1, 1970 */
-// suseconds_t  tv_usec;
+// time_t       struct timeval_sec;   /* seconds since Jan. 1, 1970 */
+// suseconds_t  struct timeval_usec;
 
 typedef struct s_struct
 {
@@ -56,7 +56,7 @@ typedef struct s_thread
 
 m_t		*fork_mutex;
 m_t		print_mutex;
-t_data	data;
+t_data	g_data;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
